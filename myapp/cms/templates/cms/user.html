@@ -1,0 +1,44 @@
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div>
+    <form action="" method="post">{% csrf_token %}
+        {% if ret %}
+        <div class="form-group row my-4">
+            <label class="col-lg-3 col-form-label">
+                <h4>リスト一覧</h4>
+            </label>
+
+            <div class="col-lg-6">
+                <h4>
+                    {% for v in listret %}
+                    {{ v }}
+                    {% endfor %}
+                </h4>
+            </div>
+        </div>
+        {% else %}
+        {% for key,val in errors.items %}
+        <h2>{{ key }} : {{ val }}</h2>
+        {% endfor %}
+        {% for field in form %}
+        <div class="form-group row my-4">
+            <label class="col-lg-3 col-form-label">
+                <h4>{{ field.label_tag }}</h4>
+            </label>
+            <h1>{{ field.widget }}</h1>
+            <div class="col-lg-6">
+                {{ field }}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="form-group row my-4">
+            <div>
+                <button type="submit" class="btn btn-primary">送信する</button>
+            </div>
+        </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

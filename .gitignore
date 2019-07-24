@@ -1,0 +1,4 @@
+__pycache__/
+env/
+corpus/
+myapp/cms/static/*
